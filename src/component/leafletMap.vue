@@ -16,8 +16,7 @@
   type TPropsMap = {
     lat?: number
     lng?: number
-    height?: number
-    width?: number
+    size?: number
     description?: string
     zoom?: number
   }
@@ -25,16 +24,15 @@
   const {
     lat = 21.0285,
     lng = 105.8542,
-    height = 200,
-    width = 200,
+    size = 200,
     description = 'Marker Here',
     zoom = 15,
   } = defineProps<TPropsMap>()
 </script>
 
 <template>
-  <div class="map" :style="`height: ${height}px; width: ${width}px`">
-    <l-map ref="map" :zoom="zoom" :center="[lat, lng]">
+  <div class="map" :style="`height: ${size}px; width: ${size}px`">
+    <l-map ref="map" :zoom="zoom" :center="[lat, lng]" :options="{ zoomControl: false }">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
@@ -47,4 +45,9 @@
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .map {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+</style>

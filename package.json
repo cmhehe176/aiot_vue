@@ -15,10 +15,13 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "ant-design-vue": "4.x",
+    "autoprefixer": "^10.4.20",
     "element-plus": "^2.8.8",
     "leaflet": "^1.9.4",
     "pinia": "^2.2.6",
-    "unplugin-auto-import": "^0.18.5",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
     "unplugin-vue-components": "^0.27.4",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
@@ -38,7 +41,7 @@
     "npm-run-all2": "^7.0.1",
     "oxlint": "^0.11.0",
     "prettier": "^3.3.3",
-    "sass": "^1.80.6",
+    "sass": "^1.81.0",
     "typescript": "~5.6.3",
     "vite": "^5.4.10",
     "vue-tsc": "^2.1.10"

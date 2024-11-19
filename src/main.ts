@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './assets/css/main.scss'
 import 'leaflet/dist/leaflet.css'
 
 import { createApp } from 'vue'
