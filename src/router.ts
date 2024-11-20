@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Preview from './views/preview.vue'
-import Alert from '@/component/alert/alertItem.vue'
+import Alert from '@/component/alert/Alert.vue'
 import AppLayout from '@/layout/AppLayout.vue'
 
 const router = createRouter({

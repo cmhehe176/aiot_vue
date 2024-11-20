@@ -10,7 +10,9 @@
     <div class="flex flex-1 overflow-hidden">
       <!-- Sidebar -->
 
-      <div class="sidebar min-w-min bg-gray-800 text-white p-5 overflow-y-auto">sidebar</div>
+      <div class="sidebar max-w-[30%] bg-gray-800 text-white p-5">
+        <div>sidebar</div>
+      </div>
       <!-- Content -->
 
       <div class="content flex flex-1 flex-col bg-gray-100">
