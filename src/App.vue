@@ -1,7 +1,15 @@
 <script setup lang="ts">
-  import { RouterView } from 'vue-router'
+  import { RouterView, useRoute } from 'vue-router'
+  import DefaultLayout from '@/layout/DefaultLayout.vue'
+  import { computed } from 'vue'
+
+  const route = useRoute()
+
+  const layout = computed(() => route.meta.layout || DefaultLayout)
 </script>
 
 <template>
-  <RouterView />
+  <component :is="layout">
+    <RouterView />
+  </component>
 </template>
