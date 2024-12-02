@@ -5,8 +5,10 @@
 </script>
 
 <template>
-  <div><AlertFilter /></div>
-  <AlertItem />
+  <div class="alert">
+    <div class="filter"><AlertFilter /></div>
+    <div class="content pt-5"><AlertItem /></div>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

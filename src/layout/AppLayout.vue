@@ -4,7 +4,7 @@
   <div class="layout flex flex-col h-screen">
     <!-- Header -->
 
-    <div class="header h-16 bg-gray-100 border-b border-gray-300">header</div>
+    <div class="header h-12 bg-gray-100 border-b border-gray-300">header</div>
     <!-- Container -->
 
     <div class="flex flex-1 overflow-hidden">
@@ -30,4 +30,9 @@
     </div>
   </div>
 </template>
-<style lang="scss" scoped></style>
+
+<style lang="scss" scoped>
+  .main {
+    background-color: #edf5f3;
+  }
+</style>
