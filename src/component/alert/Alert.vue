@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="alert">
+  <div class="alert w-full">
     <div class="filter"><AlertFilter /></div>
     <div class="content pt-5"><AlertItem /></div>
   </div>

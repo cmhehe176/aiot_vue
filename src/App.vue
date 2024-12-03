@@ -2,10 +2,11 @@
   import { RouterView, useRoute } from 'vue-router'
   import DefaultLayout from '@/layout/DefaultLayout.vue'
   import { computed } from 'vue'
+  import AppLayout from './layout/AppLayout.vue'
 
   const route = useRoute()
 
-  const layout = computed(() => route.meta.layout || DefaultLayout)
+  const layout = computed(() => route.meta.layout || AppLayout)
 </script>
 
 <template>

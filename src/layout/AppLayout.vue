@@ -1,11 +1,14 @@
 <script lang="ts" setup>
   import { ref, onMounted, computed } from 'vue'
-  import arrowSvg from '@/assets/icon/arrow.svg'
+  import BaseIcon from '@/component/BaseIcon.vue'
+  import { sidebar } from '@/constant/sidebar'
+  import BaseSidebar from '@/component/BaseSidebar/BaseSidebar.vue'
+  import { useRoute } from 'vue-router'
 
-  const isCollapse = ref(true)
   const screenWidth = ref(window.innerWidth)
+  const isCollapse = ref(window.innerWidth < 1000 ? false : true)
 
-  const dynamicClass = computed(() => (screenWidth.value < 1000 ? `fixed top-25` : ``))
+  const dynamicClass = computed(() => (screenWidth.value < 1000 ? `fixed` : ``))
 
   const updateScreenSize = () => {
     screenWidth.value = window.innerWidth
@@ -17,7 +20,7 @@
   const handleClickOutside = () => {
     if (screenWidth.value > 1000) return
 
-    isCollapse.value = !isCollapse.value
+    isCollapse.value = false
   }
 
   onMounted(() => {
@@ -27,24 +30,30 @@
 
 <template>
   <div class="app-layout flex flex-col">
-    <div class="header h-[10vh] w-full p-2 flex justify-between bg-slate-400">header</div>
-    <div class="content flex">
+    <div class="header h-[70px] w-full p-2 flex justify-between bg-slate-400 fixed">header</div>
+    <div class="content flex mt-[70px] fixed">
       <div
         v-if="isCollapse"
-        class="sidebar h-[90vh] p-2 bg-red-300 w-[250px]"
+        class="sidebar h-[90vh] p-2 w-[300px] border-r-2 bg-white z-50"
         :class="dynamicClass"
         v-click-outside="handleClickOutside"
       >
-        sidebar
+        <BaseSidebar
+          :items="sidebar"
+          :defaultOpens="[sidebar[0].path]"
+          :active="useRoute().name?.toString()"
+        />
       </div>
-      <img
+
+      <BaseIcon
         v-else
-        :src="arrowSvg"
-        alt="Arrow Icon"
-        class="w-10 h-10 fixed bottom-5 cursor-pointer"
+        name="arrow"
+        size="40"
+        class="fixed bottom-5 cursor-pointer"
         @click="isCollapse = true"
       />
-      <div class="main p-4">
+
+      <div class="main p-4 overflow-y-auto">
         <slot></slot>
       </div>
     </div>

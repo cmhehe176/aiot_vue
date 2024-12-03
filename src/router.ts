@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Preview from './views/preview.vue'
+import Index from './views/index.vue'
 import Alert from '@/component/alert/Alert.vue'
 import AppLayout from '@/layout/AppLayout.vue'
 
@@ -9,14 +9,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'index',
-      component: Preview,
-      meta: { layout: AppLayout },
+      component: Index,
     },
     {
       path: '/alert',
       name: 'alert',
       component: Alert,
-      meta: { layout: AppLayout },
     },
   ],
 })
