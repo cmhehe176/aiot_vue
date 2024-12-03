@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <LeafletMap />
+  <div>index</div>
 </template>
 
 <style lang="scss" scoped></style>

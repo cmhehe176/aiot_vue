@@ -7,9 +7,10 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/preview',
-      name: 'preview',
+      path: '/',
+      name: 'index',
       component: Preview,
+      meta: { layout: AppLayout },
     },
     {
       path: '/alert',
