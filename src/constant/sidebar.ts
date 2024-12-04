@@ -30,7 +30,7 @@ export const sidebar: ISidebar[] = [
   },
   {
     name: 'Management Support',
-    path: '',
+    path: 'support',
     icon: 'letter',
   },
 ]
