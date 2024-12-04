@@ -30,11 +30,14 @@
 
 <template>
   <div class="app-layout flex flex-col">
+    <!-- Header -->
     <div class="header h-[70px] w-full p-2 flex justify-between bg-slate-400 fixed">header</div>
+
+    <!-- Content -->
     <div class="content flex mt-[70px] fixed">
       <div
         v-if="isCollapse"
-        class="sidebar h-[90vh] p-2 w-[300px] border-r-2 bg-white z-50"
+        class="sidebar h-[90vh] p-2 w-[250px] border-r-2 bg-white z-50"
         :class="dynamicClass"
         v-click-outside="handleClickOutside"
       >

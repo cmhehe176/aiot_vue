@@ -2,35 +2,35 @@ import type { ISidebar } from '@/component/BaseSidebar/type'
 
 export const sidebar: ISidebar[] = [
   {
-    name: 'Control Pannel',
-    path: 'control',
-    icon: 'arrow',
+    name: 'Dashboard',
+    path: 'dashboard`',
+    icon: 'house',
     children: [
       {
-        name: 'DashBoard',
-        path: '',
-        icon: 'arrow',
-      },
-      {
         name: 'Alert',
-        path: '',
-        icon: 'arrow',
+        path: 'alert',
+        icon: 'alert',
       },
       {
-        name: 'Control Pannel',
-        path: '',
-        icon: 'arrow',
+        name: 'Chart',
+        path: 'chart',
+        icon: 'chart',
+      },
+      {
+        name: 'Project Management',
+        path: 'project',
+        icon: 'project',
       },
     ],
   },
   {
-    name: 'Project',
-    path: '',
-    icon: 'arrow',
+    name: 'My Project',
+    path: 'myproject',
+    icon: 'myproject',
   },
   {
-    name: 'Device',
+    name: 'Management Support',
     path: '',
-    icon: 'arrow',
+    icon: 'letter',
   },
 ]
