@@ -7,7 +7,7 @@
 
 <template>
   <div class="base-sidebar__label flex items-center gap-x-3">
-    <BaseIcon :name="item.icon" size="25" />
+    <BaseIcon :name="item.icon" size="20" />
     <span v-if="!isCollapse">{{ item.name }} </span>
   </div>
 </template>

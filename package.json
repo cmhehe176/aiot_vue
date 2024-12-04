@@ -15,7 +15,6 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "ant-design-vue": "4.x",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.9",
     "click-outside-vue3": "^4.0.1",
