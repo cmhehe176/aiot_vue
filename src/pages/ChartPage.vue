@@ -2,6 +2,7 @@
   import { objectService } from '@/service/object'
   import { useAuthStore } from '@/stores/auth'
   import { onMounted, ref } from 'vue'
+  import FilterProject from '@/component/FilterProject.vue'
 
   const { profile } = useAuthStore()
 
@@ -10,10 +11,11 @@
   onMounted(async () => {
     data.value = await objectService.getObject()
   })
-</script>
 
+</script>
 <template>
-  <div>chart {{ data }}</div>
+  <FilterProject />
+  hello
 </template>
 
 <style lang="scss" scoped></style>

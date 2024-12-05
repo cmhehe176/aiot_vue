@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Index from './pages/index.vue'
-import Alert from '@/component/alert/Alert.vue'
-import AppLayout from '@/layout/AppLayout.vue'
 import ChartPage from './pages/ChartPage.vue'
 import AlertPage from './pages/AlertPage.vue'
 import ProjectManagement from './pages/ProjectManagement.vue'
