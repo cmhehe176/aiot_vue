@@ -8,6 +8,9 @@ import ProjectManagement from './pages/ProjectManagement.vue'
 import MyProject from './pages/MyProject.vue'
 import SupportManagement from './pages/SupportManagement.vue'
 import LoginPage from './pages/LoginPage.vue'
+import DefaultLayout from './layout/DefaultLayout.vue'
+import { useAuthStore } from './stores/auth'
+import { authService } from './service/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,7 +20,12 @@ const router = createRouter({
       name: 'index',
       component: Index,
     },
-
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginPage,
+      meta: { layout: DefaultLayout },
+    },
     {
       path: '/dashboard',
       name: 'dashboard',
@@ -50,6 +58,28 @@ const router = createRouter({
       component: SupportManagement,
     },
   ],
+})
+
+const PUBLIC_PAGES = ['/login', '/']
+
+router.beforeEach(async (to, _from, next) => {
+  const { setProfile, profile } = useAuthStore()
+
+  if (PUBLIC_PAGES.includes(to.path)) {
+    return next()
+  }
+
+  const accessToken = localStorage.getItem('accessToken')
+  if (!accessToken) return next('/login')
+
+  if (profile) return next()
+
+  const userProfile = await authService.getProfile()
+  if (!userProfile.profile) return next('/login')
+
+  setProfile(userProfile.profile)
+
+  next()
 })
 
 export default router

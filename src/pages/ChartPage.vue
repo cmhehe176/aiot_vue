@@ -1,6 +1,9 @@
 <script lang="ts" setup>
   import { objectService } from '@/service/object'
+  import { useAuthStore } from '@/stores/auth'
   import { onMounted, ref } from 'vue'
+
+  const { profile } = useAuthStore()
 
   const data = ref()
 

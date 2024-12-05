@@ -22,6 +22,7 @@ export default [
     name: 'app/vue-rules',
     files: ['**/*.vue'],
     rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
       'vue/padding-line-between-blocks': ['error', 'always'],
       'vue/component-tags-order': [
         'error',

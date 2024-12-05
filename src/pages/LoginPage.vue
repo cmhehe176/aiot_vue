@@ -2,10 +2,13 @@
   import { reactive, ref, watch } from 'vue'
   import { useRouter } from 'vue-router'
   import { authService } from '@/service/auth'
+  import { ElMessage } from 'element-plus'
+  import { useAuthStore } from '@/stores/auth'
 
   const router = useRouter()
+  const { setProfile } = useAuthStore()
 
-  const stateLoginForm = ref(true)
+  const isLogin = ref(true)
 
   const formLogin = reactive({
     username: '',
@@ -20,7 +23,7 @@
   })
 
   watch(
-    () => stateLoginForm.value,
+    () => isLogin.value,
     () => {
       formLogin.username = ''
       formLogin.password = ''
@@ -32,19 +35,22 @@
   )
 
   const onSubmit = async () => {
-    if (stateLoginForm.value) {
+    if (isLogin.value) {
       const res = await authService.login(formLogin)
-
       if (!res) return
-     
 
-			 
-			
-			router.push({ name: 'alert' })
+      const { profile } = await authService.getProfile()
+      if (!profile) return
+
+      setProfile(profile)
+
+      ElMessage({ message: 'Đăng nhập thành công', type: 'success' })
+
+      router.push({ name: 'alert' })
     }
 
     // return authService.getProfile(formRegister).then((data) => {
-    //   if (data) stateLoginForm.value = true
+    //   if (data) isLogin.value = true
     // })
   }
 </script>
@@ -53,12 +59,10 @@
   <div class="login">
     <div class="container-login">
       <div class="preview-login">
-        <el-avatar :size="300" src="https://empty" @error="true">
-          <img src="/images/aiot.png" />
-        </el-avatar>
+        <el-avatar :size="300" src="https://empty" @error="true"> </el-avatar>
       </div>
-      <div class="input-login" :style="{ 'margin-top': stateLoginForm ? '10%' : '3%' }">
-        <el-form v-if="stateLoginForm" :model="formLogin" @submit.prevent>
+      <div class="input-login" :style="{ 'margin-top': isLogin ? '10%' : '0%' }">
+        <el-form v-if="isLogin" :model="formLogin" @submit.prevent>
           <el-form-item>
             <el-input v-model="formLogin.username" placeholder="email or telephone" size="large" />
           </el-form-item>
@@ -102,12 +106,12 @@
           <el-button
             type="button"
             round
-            @click="stateLoginForm = !stateLoginForm"
+            @click="isLogin = !isLogin"
             size="large"
             style="width: 50%"
             text
           >
-            {{ stateLoginForm ? 'Tạo tài khoản' : 'Quay lại đăng nhập' }}
+            {{ isLogin ? 'Tạo tài khoản' : 'Quay lại đăng nhập' }}
           </el-button>
           <el-button
             color="#a1bff0"
@@ -173,7 +177,7 @@
         }
 
         .button {
-          margin-top: 15%;
+          margin-top: 20px;
           display: flex;
           gap: 15%;
         }

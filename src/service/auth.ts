@@ -3,6 +3,7 @@ import api from './api'
 
 class AuthService {
   private axiosIstance: AxiosInstance
+
   constructor(axios: AxiosInstance) {
     this.axiosIstance = axios
   }
@@ -11,7 +12,9 @@ class AuthService {
     try {
       const response = await this.axiosIstance.post('/auth/login', body)
 
-      if (response.data.accessToken) localStorage.setItem('accessToken', response.data.accessToken)
+      if (!response.data.accessToken) return
+
+      localStorage.setItem('accessToken', response.data.accessToken)
 
       return response.data.accessToken
     } catch (error) {

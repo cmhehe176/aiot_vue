@@ -3,7 +3,9 @@
   import BaseIcon from '@/component/BaseIcon.vue'
   import { sidebar } from '@/constant/sidebar'
   import BaseSidebar from '@/component/BaseSidebar/BaseSidebar.vue'
-  import { useRoute } from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router'
+
+  const router = useRouter()
 
   const screenWidth = ref(window.innerWidth)
   const isCollapse = ref(window.innerWidth < 1000 ? false : true)
@@ -26,12 +28,20 @@
   onMounted(() => {
     window.addEventListener('resize', updateScreenSize)
   })
+
+  const handleLogout = () => {
+    router.push({ name: 'login' })
+
+    localStorage.removeItem('accessToken')
+  }
 </script>
 
 <template>
   <div class="app-layout flex flex-col">
     <!-- Header -->
-    <div class="header h-[70px] w-full p-2 flex justify-between bg-slate-400 fixed">header</div>
+    <div class="header h-[70px] w-full p-2 flex justify-between bg-slate-400 fixed">
+      <el-button @click="handleLogout"> logout</el-button>
+    </div>
 
     <!-- Content -->
     <div class="content flex mt-[70px] fixed">
