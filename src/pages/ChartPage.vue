@@ -1,5 +1,16 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  import { objectService } from '@/service/object'
+  import { onMounted, ref } from 'vue'
 
-<template><div>chart</div></template>
+  const data = ref()
+
+  onMounted(async () => {
+    data.value = await objectService.getObject()
+  })
+</script>
+
+<template>
+  <div>chart {{ data }}</div>
+</template>
 
 <style lang="scss" scoped></style>
