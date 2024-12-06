@@ -1,74 +1,91 @@
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { useAuthStore } from '@/stores/auth'
+  import { storeToRefs } from 'pinia'
+  import { onMounted } from 'vue'
+  import { optionsTypes } from '@/constant/optionsType'
 
-  const value = ref('')
+  const authStore = useAuthStore()
 
-  const options = [
-    {
-      value: 'Option1',
-      label: 'Option1',
-    },
-    {
-      value: 'Option2',
-      label: 'Option2',
-    },
-    {
-      value: 'Option3',
-      label: 'Option3',
-    },
-    {
-      value: 'Option4',
-      label: 'Option4',
-    },
-    {
-      value: 'Option5',
-      label: 'Option5',
-    },
-  ]
+  const { getListDeviceByProject } = useAuthStore()
+  const { listProject, listDeviceByProject } = storeToRefs(authStore)
+
+  const modelProject = defineModel<number>('project')
+  const modelDevice = defineModel<number>('device')
+  const modelDatePicker = defineModel<(string | Date)[]>('datePicker')
+  const modelTypeObject = defineModel<string>('typeObject')
+
+  const handleChangeProject = () => {
+    getListDeviceByProject(modelProject.value as number)
+
+    const [defaultDevice] = listDeviceByProject.value
+    modelDevice.value = defaultDevice.id
+  }
+
+  onMounted(() => {
+    const [defaultProject] = listProject.value
+    modelProject.value = defaultProject.id
+
+    handleChangeProject()
+  })
 </script>
 
 <template>
   <div class="filter flex flex-wrap w-full gap-5">
     <div class="item">
       <span class="pr-2">Project :</span>
-      <el-select v-model="value" placeholder="Select" style="width: 240px" :show-arrow="false">
+      <el-select
+        v-model="modelProject"
+        placeholder="Select"
+        style="width: 200px"
+        :show-arrow="false"
+        @change="handleChangeProject"
+      >
         <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
+          v-for="project in listProject"
+          :key="project.id"
+          :label="project.name"
+          :value="project.id"
         />
       </el-select>
     </div>
     <div class="item">
       <span class="pr-2">Device :</span>
-      <el-select v-model="value" placeholder="Select" style="width: 240px" :show-arrow="false">
+      <el-select
+        v-model="modelDevice"
+        placeholder="Select"
+        style="width: 200px"
+        :show-arrow="false"
+      >
         <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
+          v-for="device in listDeviceByProject"
+          :key="device.id"
+          :label="device.name"
+          :value="device.id"
         />
       </el-select>
     </div>
     <div class="item">
       <span class="pr-2">Time</span>
-      <el-select v-model="value" placeholder="Select" style="width: 240px" :show-arrow="false">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
+      <el-date-picker
+        v-model="modelDatePicker"
+        type="daterange"
+        range-separator="To"
+        start-placeholder="Start date"
+        end-placeholder="End date"
+      />
     </div>
     <div class="item">
       <span class="pr-2">Object Type</span>
-      <el-select v-model="value" placeholder="Select" style="width: 240px" :show-arrow="false">
+      <el-select
+        v-model="modelTypeObject"
+        placeholder="Select"
+        style="width: 200px"
+        :show-arrow="false"
+      >
         <el-option
-          v-for="item in options"
+          v-for="item in optionsTypes"
           :key="item.value"
-          :label="item.label"
+          :label="item.name"
           :value="item.value"
         />
       </el-select>
@@ -76,4 +93,11 @@
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .filter {
+    .item {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+</style>

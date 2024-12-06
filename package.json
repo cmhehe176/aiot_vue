@@ -19,6 +19,7 @@
     "axios": "^1.7.9",
     "chart.js": "^4.4.7",
     "click-outside-vue3": "^4.0.1",
+    "dayjs": "^1.11.13",
     "element-plus": "^2.8.8",
     "leaflet": "^1.9.4",
     "pinia": "^2.2.6",
