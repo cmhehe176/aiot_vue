@@ -19,10 +19,16 @@ export default [
   oxlint.configs['flat/recommended'],
   skipFormatting,
   {
+    name: 'app/disable-explicit-any',
+    files: ['**/*.{ts,mts,tsx,vue}'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+  {
     name: 'app/vue-rules',
     files: ['**/*.vue'],
     rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
       'vue/padding-line-between-blocks': ['error', 'always'],
       'vue/component-tags-order': [
         'error',

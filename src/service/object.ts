@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosRequestConfig } from 'axios'
+import type { AxiosInstance } from 'axios'
 import api from './api'
 
 class ObjectService {
@@ -20,7 +20,6 @@ class ObjectService {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async getDetail(body: any) {
     try {
       const response = await this.axiosInstance.get(`/object/detail`, {

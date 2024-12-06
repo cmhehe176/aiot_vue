@@ -15,20 +15,20 @@ api.interceptors.request.use((request) => {
   return request
 })
 
-// api.interceptors.response.use(
-//   (response) => {
-//     return response
-//   },
-//   async (error) => {
-//     if (error.response) {
-//       if (error.response.status === 401) {
-//         localStorage.clear()
-//         window.location.href = '/login'
-//       }
-//       return Promise.reject(error.response.data)
-//     }
-//     return Promise.reject(error)
-//   },
-// )
+api.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  async (error) => {
+    if (error.response) {
+      if (error.response.status === 401) {
+        localStorage.clear()
+        window.location.href = '/login'
+      }
+      return Promise.reject(error.response.data)
+    }
+    return Promise.reject(error)
+  },
+)
 
 export default api
