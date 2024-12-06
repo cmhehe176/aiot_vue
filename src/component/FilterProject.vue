@@ -31,7 +31,7 @@
 
 <template>
   <div class="filter flex flex-wrap w-full gap-10">
-    <FloatLabel variant="on" class="md:w-56">
+    <FloatLabel variant="on" class="md:w-52">
       <Select
         v-model="modelProject"
         inputId="project"
@@ -44,7 +44,7 @@
       <label for="project">Project</label>
     </FloatLabel>
 
-    <FloatLabel variant="on" class="md:w-56">
+    <FloatLabel variant="on" class="md:w-52">
       <Select
         v-model="modelDevice"
         inputId="device"
@@ -56,7 +56,7 @@
       <label for="device">Device</label>
     </FloatLabel>
 
-    <FloatLabel variant="on" class="md:w-56">
+    <FloatLabel variant="on" class="md:w-52">
       <DatePicker
         v-model="modelDatePicker"
         selectionMode="range"
@@ -67,7 +67,7 @@
       <label for="datepicker">Select Date</label>
     </FloatLabel>
 
-    <FloatLabel variant="on" class="md:w-56">
+    <FloatLabel variant="on" class="w-36">
       <Select
         v-model="modelTypeObject"
         inputId="type"

@@ -1,8 +1,7 @@
 <script setup lang="ts">
   import { sidebar } from '@/constant/sidebar'
   import BaseIcon from '../BaseIcon.vue'
-  import { useRoute } from 'vue-router'
-  import { computed, ref } from 'vue'
+  import { ref } from 'vue'
 
   const expandedKeys = ref({
     dashboard: true,
@@ -11,13 +10,7 @@
 
 <template>
   <div class="card flex justify-center">
-    <PanelMenu
-      :model="sidebar"
-      :expandedKeys="expandedKeys"
-      class="w-full md:w-80"
-      multiple
-      focused
-    >
+    <PanelMenu :model="sidebar" :expandedKeys="expandedKeys" class="w-full md:w-80" multiple>
       <template #item="{ item }">
         <RouterLink
           :to="{ name: item.key }"
