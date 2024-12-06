@@ -11,11 +11,10 @@
   onMounted(async () => {
     data.value = await objectService.getObject()
   })
-
 </script>
+
 <template>
-  <FilterProject />
-  hello
+  <div><FilterProject class="p-1 w-full"/> <span>hello</span></div>
 </template>
 
 <style lang="scss" scoped></style>

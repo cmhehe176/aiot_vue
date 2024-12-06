@@ -44,7 +44,7 @@
     </div>
 
     <!-- Content -->
-    <div class="content flex mt-[70px] fixed">
+    <div class="content flex mt-[70px] fixed w-full">
       <div
         v-if="isCollapse"
         class="sidebar h-[90vh] p-2 w-[250px] border-r-2 bg-white z-50"
@@ -66,7 +66,10 @@
         @click="isCollapse = true"
       />
 
-      <div class="main p-4 overflow-y-auto">
+      <div
+        class="main p-4 overflow-y-auto h-full"
+        :class="{ 'w-full h-full': !isCollapse, 'flex-1': isCollapse }"
+      >
         <slot></slot>
       </div>
     </div>

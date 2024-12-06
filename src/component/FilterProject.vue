@@ -30,7 +30,7 @@
 </script>
 
 <template>
-  <div class="filter flex flex-wrap w-full gap-5">
+  <div class="filter flex flex-wrap w-full gap-10">
     <div class="item">
       <span class="pr-2">Project :</span>
       <el-select
@@ -48,6 +48,7 @@
         />
       </el-select>
     </div>
+
     <div class="item">
       <span class="pr-2">Device :</span>
       <el-select
@@ -64,6 +65,7 @@
         />
       </el-select>
     </div>
+
     <div class="item">
       <span class="pr-2">Time</span>
       <el-date-picker
@@ -74,6 +76,7 @@
         end-placeholder="End date"
       />
     </div>
+
     <div class="item">
       <span class="pr-2">Object Type</span>
       <el-select
