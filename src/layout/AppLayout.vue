@@ -1,9 +1,7 @@
 <script lang="ts" setup>
   import { ref, onMounted, computed } from 'vue'
   import BaseIcon from '@/component/BaseIcon.vue'
-  import { sidebar } from '@/constant/sidebar'
-  import BaseSidebar from '@/component/BaseSidebar/BaseSidebar.vue'
-  import { useRoute, useRouter } from 'vue-router'
+  import { useRouter } from 'vue-router'
   import AppSidebar from '@/component/Sidebar/AppSidebar.vue'
 
   const router = useRouter()
@@ -38,25 +36,20 @@
 </script>
 
 <template>
-  <div class="app-layout flex flex-col">
+  <div class="app-layout flex flex-col h-screen">
     <!-- Header -->
     <div class="header h-[70px] w-full p-2 flex justify-between bg-slate-400 fixed">
       <el-button @click="handleLogout"> logout</el-button>
     </div>
 
     <!-- Content -->
-    <div class="content flex mt-[70px] fixed w-full">
+    <div class="content flex mt-[70px] fixed w-full h-full">
       <div
         v-if="isCollapse"
         class="sidebar h-[90vh] p-2 w-[250px] border-r-2 bg-white z-50"
         :class="dynamicClass"
         v-click-outside="handleClickOutside"
       >
-        <!-- <BaseSidebar
-          :items="sidebar"
-          :defaultOpens="[sidebar[0].path]"
-          :active="useRoute().name?.toString()"
-        /> -->
         <AppSidebar />
       </div>
 
@@ -68,14 +61,9 @@
         @click="isCollapse = true"
       />
 
-      <div
-        class="main p-4 overflow-y-auto h-full"
-        :class="{ 'w-full h-full': !isCollapse, 'flex-1': isCollapse }"
-      >
+      <div class="main p-4 flex-1 overflow-y-auto h-full">
         <slot></slot>
       </div>
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped></style>
