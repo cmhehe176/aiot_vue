@@ -11,7 +11,7 @@
 
   const modelProject = defineModel<number>('project')
   const modelDevice = defineModel<number>('device')
-  const modelDatePicker = defineModel<(string | Date)[]>('datePicker')
+  const modelDatePicker = defineModel<any>('datePicker')
   const modelTypeObject = defineModel<string>('typeObject')
 
   const handleChangeProject = () => {
@@ -31,68 +31,53 @@
 
 <template>
   <div class="filter flex flex-wrap w-full gap-10">
-    <div class="item">
-      <span class="pr-2">Project :</span>
-      <el-select
+    <FloatLabel variant="on" class="md:w-56">
+      <Select
         v-model="modelProject"
-        placeholder="Select"
-        style="width: 200px"
-        :show-arrow="false"
+        inputId="project"
+        :options="listProject"
+        optionLabel="name"
+        optionValue="id"
+        class="w-full"
         @change="handleChangeProject"
-      >
-        <el-option
-          v-for="project in listProject"
-          :key="project.id"
-          :label="project.name"
-          :value="project.id"
-        />
-      </el-select>
-    </div>
-
-    <div class="item">
-      <span class="pr-2">Device :</span>
-      <el-select
-        v-model="modelDevice"
-        placeholder="Select"
-        style="width: 200px"
-        :show-arrow="false"
-      >
-        <el-option
-          v-for="device in listDeviceByProject"
-          :key="device.id"
-          :label="device.name"
-          :value="device.id"
-        />
-      </el-select>
-    </div>
-
-    <div class="item">
-      <span class="pr-2">Time</span>
-      <el-date-picker
-        v-model="modelDatePicker"
-        type="daterange"
-        range-separator="To"
-        start-placeholder="Start date"
-        end-placeholder="End date"
       />
-    </div>
+      <label for="project">Project</label>
+    </FloatLabel>
 
-    <div class="item">
-      <span class="pr-2">Object Type</span>
-      <el-select
+    <FloatLabel variant="on" class="md:w-56">
+      <Select
+        v-model="modelDevice"
+        inputId="device"
+        :options="listDeviceByProject"
+        optionLabel="name"
+        optionValue="id"
+        class="w-full"
+      />
+      <label for="device">Device</label>
+    </FloatLabel>
+
+    <FloatLabel variant="on" class="md:w-56">
+      <DatePicker
+        v-model="modelDatePicker"
+        selectionMode="range"
+        inputId="datepicker"
+        class="w-full"
+        dateFormat="dd/mm/yy"
+      />
+      <label for="datepicker">Select Date</label>
+    </FloatLabel>
+
+    <FloatLabel variant="on" class="md:w-56">
+      <Select
         v-model="modelTypeObject"
-        placeholder="Select"
-        style="width: 200px"
-        :show-arrow="false"
-      >
-        <el-option
-          v-for="item in optionsTypes"
-          :key="item.value"
-          :label="item.name"
-          :value="item.value"
-        />
-      </el-select>
-    </div>
+        inputId="type"
+        :options="optionsTypes"
+        optionLabel="name"
+        optionValue="value"
+        class="w-full"
+      />
+      <label for="type">Object Type</label>
+    </FloatLabel>
   </div>
 </template>
 
