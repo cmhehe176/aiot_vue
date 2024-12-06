@@ -13,8 +13,8 @@
 <template>
   <div class="base-sidebar-item">
     <div
-      v-if="!item.children"
-      @click="router.push({ name: item.path })"
+      v-if="!item.items"
+      @click="router.push({ name: item.key })"
       class="base-sidebar-item no-underline"
     >
       <el-menu-item :index="item.path">
@@ -22,13 +22,13 @@
       </el-menu-item>
     </div>
 
-    <el-sub-menu v-else :index="item.path">
+    <el-sub-menu v-else :index="item.key">
       <template #title>
         <LabelSidebar :item="item" />
       </template>
 
-      <el-menu-item-group v-if="item.children.length">
-        <BaseSidebarItem v-for="subItem in item.children" :key="subItem.name" :item="subItem" />
+      <el-menu-item-group v-if="item.items.length">
+        <BaseSidebarItem v-for="subItem in item.items" :key="subItem.name" :item="subItem" />
       </el-menu-item-group>
     </el-sub-menu>
   </div>

@@ -3,34 +3,34 @@ import type { ISidebar } from '@/component/BaseSidebar/type'
 export const sidebar: ISidebar[] = [
   {
     name: 'Dashboard',
-    path: 'dashboard`',
+    key: 'dashboard',
     icon: 'house',
-    children: [
+    items: [
       {
         name: 'Alert',
-        path: 'alert',
+        key: 'alert',
         icon: 'alert',
       },
       {
         name: 'Chart',
-        path: 'chart',
+        key: 'chart',
         icon: 'chart',
       },
       {
         name: 'Project Management',
-        path: 'project',
+        key: 'project',
         icon: 'project',
       },
     ],
   },
   {
     name: 'My Project',
-    path: 'myproject',
+    key: 'myproject',
     icon: 'myproject',
   },
   {
     name: 'Management Support',
-    path: 'support',
+    key: 'support',
     icon: 'letter',
   },
 ]

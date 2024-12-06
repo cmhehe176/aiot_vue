@@ -4,6 +4,7 @@
   import { sidebar } from '@/constant/sidebar'
   import BaseSidebar from '@/component/BaseSidebar/BaseSidebar.vue'
   import { useRoute, useRouter } from 'vue-router'
+  import AppSidebar from '@/component/Sidebar/AppSidebar.vue'
 
   const router = useRouter()
 
@@ -51,11 +52,12 @@
         :class="dynamicClass"
         v-click-outside="handleClickOutside"
       >
-        <BaseSidebar
+        <!-- <BaseSidebar
           :items="sidebar"
           :defaultOpens="[sidebar[0].path]"
           :active="useRoute().name?.toString()"
-        />
+        /> -->
+        <AppSidebar />
       </div>
 
       <BaseIcon

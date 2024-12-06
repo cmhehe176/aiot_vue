@@ -1,8 +1,8 @@
 export interface ISidebar {
   name: string
-  path: string
+  key: string
   icon: string
-  children?: ISidebar[]
+  items?: ISidebar[]
 }
 
 export interface IProps {

@@ -30,8 +30,12 @@ declare module 'vue' {
     ElUpload: (typeof import('element-plus/es'))['ElUpload']
     FloatLabel: typeof import('primevue/floatlabel')['default']
     IftaLabel: typeof import('primevue/iftalabel')['default']
+    PanelMenu: typeof import('primevue/panelmenu')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Select: typeof import('primevue/select')['default']
+  }
+  export interface ComponentCustomProperties {
+    Ripple: typeof import('primevue/ripple')['default']
   }
 }

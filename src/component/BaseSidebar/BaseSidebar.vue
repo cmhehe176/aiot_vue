@@ -12,7 +12,7 @@
       :default-active="active || 'index'"
       :default-openeds="defaultOpens"
     >
-      <BaseSidebarItem v-for="item in items" :key="item.path" :item="item" />
+      <BaseSidebarItem v-for="item in items" :key="item.key" :item="item" />
     </el-menu>
   </div>
 </template>
