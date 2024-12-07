@@ -19,4 +19,3 @@
     <examplle class="p-2" />
   </div>
 </template>
-
