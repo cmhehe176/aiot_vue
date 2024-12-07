@@ -64,7 +64,7 @@ const router = createRouter({
   ],
 })
 
-const PUBLIC_PAGES = ['/login', '/']
+const PUBLIC_PAGES = ['/login']
 
 router.beforeEach(async (to, _from, next) => {
   const { setProfile, profile } = useAuthStore()

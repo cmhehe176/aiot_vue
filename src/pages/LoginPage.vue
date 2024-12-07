@@ -57,6 +57,8 @@
 
 <template>
   <div class="login">
+    <Toast />
+
     <div class="container-login">
       <div class="preview-login">
         <el-avatar :size="300" src="https://empty" @error="true"> </el-avatar>

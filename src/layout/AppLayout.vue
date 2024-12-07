@@ -3,8 +3,10 @@
   import BaseIcon from '@/component/BaseIcon.vue'
   import { useRouter } from 'vue-router'
   import AppSidebar from '@/component/Sidebar/AppSidebar.vue'
+  import { useAuthStore } from '@/stores/auth'
 
   const router = useRouter()
+  const authStore = useAuthStore()
 
   const screenWidth = ref(window.innerWidth)
   const isCollapse = ref(window.innerWidth < 1000 ? false : true)
@@ -24,15 +26,18 @@
     isCollapse.value = false
   }
 
-  onMounted(() => {
-    window.addEventListener('resize', updateScreenSize)
-  })
-
   const handleLogout = () => {
     router.push({ name: 'login' })
 
+    authStore.$reset()
+
+    sessionStorage.removeItem('auth')
     localStorage.removeItem('accessToken')
   }
+
+  onMounted(() => {
+    window.addEventListener('resize', updateScreenSize)
+  })
 </script>
 
 <template>
@@ -53,7 +58,13 @@
         <AppSidebar />
       </div>
 
-      <BaseIcon v-else name="arrow" size="50" class="fixed bottom-5 z-50" @click="isCollapse = true" />
+      <BaseIcon
+        v-else
+        name="arrow"
+        size="50"
+        class="fixed bottom-5 z-50"
+        @click="isCollapse = true"
+      />
 
       <div class="main p-4 flex-1 overflow-y-auto h-full">
         <slot></slot>

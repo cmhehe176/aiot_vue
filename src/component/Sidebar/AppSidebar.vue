@@ -1,15 +1,18 @@
 <script setup lang="ts">
   import { sidebars } from '@/constant/sidebar'
   import BaseIcon from '../BaseIcon.vue'
-  import { ref } from 'vue'
+  import { onMounted, ref } from 'vue'
   import type { ISidebar } from '../Sidebar/type'
   import { useAuthStore } from '@/stores/auth'
+  import { storeToRefs } from 'pinia'
 
-  const { isAdmin } = useAuthStore()
+  const { isAdmin } = storeToRefs(useAuthStore())
 
   const expandedKeys = ref({
     dashboard: true,
   })
+
+  const sidebarItems = ref(sidebars)
 
   const removeAdminItems = (sidebars: ISidebar[]): ISidebar[] => {
     return sidebars
@@ -20,17 +23,16 @@
       }))
   }
 
-  const filteredSidebar = removeAdminItems(sidebars)
+  onMounted(() => {
+    if (isAdmin.value) return
+
+    sidebarItems.value = removeAdminItems(sidebars)
+  })
 </script>
 
 <template>
   <div class="card flex justify-center">
-    <PanelMenu
-      :model="isAdmin ? sidebars : filteredSidebar"
-      :expandedKeys="expandedKeys"
-      class="w-full md:w-80"
-      multiple
-    >
+    <PanelMenu :model="sidebarItems" :expandedKeys="expandedKeys" class="w-full md:w-80" multiple>
       <template #item="{ item }">
         <RouterLink
           :to="{ name: item.key }"
