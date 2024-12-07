@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage.vue'
 import DefaultLayout from './layout/DefaultLayout.vue'
 import { useAuthStore } from './stores/auth'
 import { authService } from './service/auth'
+import DevicePage from './pages/DevicePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,6 +55,11 @@ const router = createRouter({
       path: '/support-management',
       name: 'support',
       component: SupportManagement,
+    },
+    {
+      path: '/device',
+      name: 'device',
+      component: DevicePage,
     },
   ],
 })

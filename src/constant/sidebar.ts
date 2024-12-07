@@ -35,4 +35,9 @@ export const sidebars: ISidebar[] = [
     icon: 'letter',
     admin: true,
   },
+  {
+    name: 'Device',
+    key: 'device',
+    icon: 'device',
+  },
 ]
