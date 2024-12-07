@@ -27,7 +27,6 @@ const router = createRouter({
     },
     {
       path: '/dashboard',
-      name: 'dashboard',
       children: [
         {
           path: '/alert',
@@ -79,6 +78,7 @@ router.beforeEach(async (to, _from, next) => {
   if (profile) return next()
 
   const userProfile = await authService.getProfile()
+
   if (!userProfile.profile) return next('/login')
 
   setProfile(userProfile.profile)

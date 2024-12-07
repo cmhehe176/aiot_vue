@@ -1,8 +1,7 @@
 <script setup lang="ts">
-  import { sidebars } from '@/constant/sidebar'
+  import { sidebars, sidebarsForUser } from '@/constant/sidebar'
   import BaseIcon from '../BaseIcon.vue'
-  import { onMounted, ref } from 'vue'
-  import type { ISidebar } from '../Sidebar/type'
+  import { computed, ref } from 'vue'
   import { useAuthStore } from '@/stores/auth'
   import { storeToRefs } from 'pinia'
 
@@ -12,30 +11,40 @@
     dashboard: true,
   })
 
-  const sidebarItems = ref(sidebars)
-
-  const removeAdminItems = (sidebars: ISidebar[]): ISidebar[] => {
-    return sidebars
-      .filter((sidebar) => !sidebar.admin)
-      .map((sidebar) => ({
-        ...sidebar,
-        items: sidebar.items ? removeAdminItems(sidebar.items) : undefined,
-      }))
-  }
-
-  onMounted(() => {
-    if (isAdmin.value) return
-
-    sidebarItems.value = removeAdminItems(sidebars)
-  })
+  // const sidebarItems = computed(() => (isAdmin.value ? sidebars : sidebarsForUser))
 </script>
 
 <template>
+  <!-- iam tired for this bug , for fix temp this bug i will use this way -->
   <div class="card flex justify-center">
-    <PanelMenu :model="sidebarItems" :expandedKeys="expandedKeys" class="w-full md:w-80" multiple>
+    <PanelMenu
+      v-if="isAdmin"
+      :model="sidebars"
+      :expandedKeys="expandedKeys"
+      class="w-full md:w-80"
+      multiple
+    >
       <template #item="{ item }">
         <RouterLink
-          :to="{ name: item.key }"
+          :to="{ name: item.name }"
+          class="flex items-center px-4 py-2 cursor-pointer group"
+        >
+          <BaseIcon v-if="item.icon" :name="item.icon" size="18" />
+          <span :class="['ml-2', { 'font-semibold': item.items }]">{{ item.label }}</span>
+        </RouterLink>
+      </template>
+    </PanelMenu>
+
+    <PanelMenu
+      v-else
+      :model="sidebarsForUser"
+      :expandedKeys="expandedKeys"
+      class="w-full md:w-80"
+      multiple
+    >
+      <template #item="{ item }">
+        <RouterLink
+          :to="{ name: item.name }"
           class="flex items-center px-4 py-2 cursor-pointer group"
         >
           <BaseIcon v-if="item.icon" :name="item.icon" size="18" />

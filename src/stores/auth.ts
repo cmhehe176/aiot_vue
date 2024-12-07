@@ -6,7 +6,8 @@ export const useAuthStore = defineStore('auth', () => {
   const profile = ref()
   const listDeviceByProject = ref<any[]>([])
 
-  const isAdmin = computed(() => (profile.value?.roleId === Roles.ADMIN ? true : false))
+  //this true to fix bug for sidebar for admin when reload page
+  const isAdmin = computed(() => profile.value?.roleId === Roles.ADMIN )
   const listProject = computed(() => profile.value.project || [])
   const listDevice = computed(() => listProject.value.flatMap((p: any) => p.device) || [])
 

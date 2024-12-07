@@ -2,42 +2,59 @@ import type { ISidebar } from '@/component/Sidebar/type'
 
 export const sidebars: ISidebar[] = [
   {
-    name: 'Dashboard',
+    label: 'Dashboard',
     key: 'dashboard',
     icon: 'house',
     items: [
       {
-        name: 'Alert',
+        label: 'Alert',
+        name: 'alert',
         key: 'alert',
         icon: 'alert',
       },
       {
-        name: 'Chart',
+        label: 'Chart',
+        name: 'chart',
         key: 'chart',
         icon: 'chart',
         admin: true,
       },
       {
-        name: 'Project Management',
+        label: 'Project Management',
+        name: 'project',
         key: 'project',
         icon: 'project',
       },
     ],
   },
   {
-    name: 'My Project',
+    label: 'My Project',
+    name: 'myproject',
     key: 'myproject',
     icon: 'myproject',
   },
   {
-    name: 'Management Support',
+    label: 'Management Support',
+    name: 'support',
     key: 'support',
     icon: 'letter',
     admin: true,
   },
   {
-    name: 'Device',
+    label: 'Device',
+    name: 'device',
     key: 'device',
     icon: 'device',
   },
 ]
+
+const removeAdminItems = (sidebars: ISidebar[]): ISidebar[] => {
+  return sidebars
+    .filter((sidebar) => !sidebar.admin)
+    .map((sidebar) => ({
+      ...sidebar,
+      items: sidebar.items ? removeAdminItems(sidebar.items) : undefined,
+    }))
+}
+
+export const sidebarsForUser = removeAdminItems(sidebars)

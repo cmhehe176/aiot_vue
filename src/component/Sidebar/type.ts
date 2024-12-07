@@ -1,5 +1,6 @@
 export interface ISidebar {
-  name: string
+  label: string
+  name?: string
   key: string
   icon: string
   items?: ISidebar[]
