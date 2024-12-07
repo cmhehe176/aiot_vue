@@ -1,5 +1,15 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  import ListProject from '@/component/Project/ListProject.vue'
+  import { useAuthStore } from '@/stores/auth'
 
-<template>my project</template>
+  const { isAdmin } = useAuthStore()
+</script>
+
+<template>
+  <div class="flex flex-col gap-2 flex-wrap">
+    <Button v-if="isAdmin" class="w-28" label="Add Project" />
+    <ListProject />
+  </div>
+</template>
 
 <style lang="scss" scoped></style>

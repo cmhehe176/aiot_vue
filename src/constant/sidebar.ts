@@ -1,6 +1,6 @@
-import type { ISidebar } from '@/component/BaseSidebar/type'
+import type { ISidebar } from '@/component/Sidebar/type'
 
-export const sidebar: ISidebar[] = [
+export const sidebars: ISidebar[] = [
   {
     name: 'Dashboard',
     key: 'dashboard',
@@ -15,6 +15,7 @@ export const sidebar: ISidebar[] = [
         name: 'Chart',
         key: 'chart',
         icon: 'chart',
+        admin: true,
       },
       {
         name: 'Project Management',
@@ -32,5 +33,6 @@ export const sidebar: ISidebar[] = [
     name: 'Management Support',
     key: 'support',
     icon: 'letter',
+    admin: true,
   },
 ]

@@ -53,13 +53,7 @@
         <AppSidebar />
       </div>
 
-      <BaseIcon
-        v-else
-        name="arrow"
-        size="40"
-        class="fixed bottom-5 cursor-pointer"
-        @click="isCollapse = true"
-      />
+      <BaseIcon v-else name="arrow" size="50" class="fixed bottom-5 z-50" @click="isCollapse = true" />
 
       <div class="main p-4 flex-1 overflow-y-auto h-full">
         <slot></slot>

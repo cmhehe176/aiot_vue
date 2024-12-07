@@ -1,23 +1,22 @@
 <script lang="ts" setup>
-  import ChartTypeDevice from './ChartTypeDevice.vue'
+  import examplle from './example.vue'
 </script>
 
 <template>
   <div>
-    <ChartTypeDevice class="p-2" />
+    <examplle class="p-2" />
   </div>
   <div>
-    <ChartTypeDevice class="p-2" />
+    <examplle class="p-2" />
   </div>
   <div>
-    <ChartTypeDevice class="p-2" />
+    <examplle class="p-2" />
   </div>
   <div>
-    <ChartTypeDevice class="p-2" />
+    <examplle class="p-2" />
   </div>
   <div>
-    <ChartTypeDevice class="p-2" />
+    <examplle class="p-2" />
   </div>
 </template>
 
-<style lang="scss" scoped></style>

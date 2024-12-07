@@ -12,5 +12,10 @@
 </script>
 
 <template>
-  <img :src="imageSrc" alt="BaseIcon" :style="{ width: `${size}px`, height: `${size}px` }" />
+  <img
+    :src="imageSrc"
+    alt="BaseIcon"
+    :style="{ width: `${size}px`, height: `${size}px` }"
+    class="cursor-pointer"
+  />
 </template>

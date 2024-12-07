@@ -1,16 +1,36 @@
 <script setup lang="ts">
-  import { sidebar } from '@/constant/sidebar'
+  import { sidebars } from '@/constant/sidebar'
   import BaseIcon from '../BaseIcon.vue'
   import { ref } from 'vue'
+  import type { ISidebar } from '../Sidebar/type'
+  import { useAuthStore } from '@/stores/auth'
+
+  const { isAdmin } = useAuthStore()
 
   const expandedKeys = ref({
     dashboard: true,
   })
+
+  const removeAdminItems = (sidebars: ISidebar[]): ISidebar[] => {
+    return sidebars
+      .filter((sidebar) => !sidebar.admin)
+      .map((sidebar) => ({
+        ...sidebar,
+        items: sidebar.items ? removeAdminItems(sidebar.items) : undefined,
+      }))
+  }
+
+  const filteredSidebar = removeAdminItems(sidebars)
 </script>
 
 <template>
   <div class="card flex justify-center">
-    <PanelMenu :model="sidebar" :expandedKeys="expandedKeys" class="w-full md:w-80" multiple>
+    <PanelMenu
+      :model="isAdmin ? sidebars : filteredSidebar"
+      :expandedKeys="expandedKeys"
+      class="w-full md:w-80"
+      multiple
+    >
       <template #item="{ item }">
         <RouterLink
           :to="{ name: item.key }"
