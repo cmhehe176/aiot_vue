@@ -63,6 +63,7 @@
         inputId="datepicker"
         class="w-full"
         dateFormat="dd/mm/yy"
+        showButtonBar
       />
       <label for="datepicker">Select Date</label>
     </FloatLabel>

@@ -25,25 +25,6 @@
   })
   const chartData = ref()
 
-  // const chartData = ref({
-  //   labels: ['total', 'Active', 'InActive'],
-  //   datasets: [
-  //     {
-  //       data: [statusDevice.total, statusDevice.deviceActive, statusDevice.deviceInActive],
-  //       backgroundColor: [
-  //         documentStyleBody.getPropertyValue('--p-cyan-500'),
-  //         documentStyleBody.getPropertyValue('--p-orange-500'),
-  //         documentStyleBody.getPropertyValue('--p-gray-500'),
-  //       ],
-  //       hoverBackgroundColor: [
-  //         documentStyleBody.getPropertyValue('--p-cyan-400'),
-  //         documentStyleBody.getPropertyValue('--p-orange-400'),
-  //         documentStyleBody.getPropertyValue('--p-gray-400'),
-  //       ],
-  //     },
-  //   ],
-  // })
-
   const setChartData = (statusDevice) => {
     return {
       labels: ['Active', 'InActive'],

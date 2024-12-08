@@ -11,12 +11,15 @@
 
   const dataChart = ref()
   const modelProject = ref()
+  const modelDatePicker = ref()
 
   watch(
-    () => modelProject.value,
-    async (newValue) => {
+    () => [modelProject.value, modelDatePicker.value],
+    async ([newProject, newDatePicker]) => {
       const res = await dashboardService.getDashboard({
-        projectId: newValue === -1 ? undefined : newValue,
+        projectId: newProject === -1 ? undefined : newProject,
+        startDate: newDatePicker ? newDatePicker[0] : undefined,
+        endDate: newDatePicker ? newDatePicker[1] : undefined,
       })
 
       if (!res) return
@@ -28,7 +31,11 @@
 
 <template>
   <div>
-    <FilterProject class="p-1 w-full" v-model:project="modelProject" />
+    <FilterProject
+      class="p-1 w-full"
+      v-model:project="modelProject"
+      v-model:date-picker="modelDatePicker"
+    />
 
     <div class="flex gap-20 flex-wrap mt-10">
       <div class="flex flex-col gap-8">
