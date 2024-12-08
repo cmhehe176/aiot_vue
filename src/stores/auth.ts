@@ -9,8 +9,8 @@ export const useAuthStore = defineStore('auth', () => {
 
   //this true to fix bug for sidebar for admin when reload page
   const isAdmin = computed(() => profile.value?.roleId === Roles.ADMIN)
-  const listProject = computed(() => profile.value.project || [])
-  const listDevice = computed(() => listProject.value.flatMap((p: any) => p.device) || [])
+  const listProject = computed(() => profile.value?.project || [])
+  const listDevice = computed(() => listProject.value?.flatMap((p: any) => p.device) || [])
 
   const setProfile = (user: any) => {
     profile.value = user

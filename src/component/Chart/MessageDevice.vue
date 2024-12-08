@@ -99,7 +99,7 @@
 </script>
 
 <template>
-  <div class="min-w-[600px]">
+  <div class="min-w-[500px]">
     <Fieldset legend="Message Of Device" :toggleable="true">
       <Chart type="bar" :data="chartData" :options="chartOptions" />
     </Fieldset>
