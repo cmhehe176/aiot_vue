@@ -39,7 +39,14 @@
           class="w-full"
           @click="emit('detail')"
         />
-        <Button v-if="isAdmin" label="Edit" class="w-full" @click="emit('edit')" />
+        <Button
+          v-if="isAdmin"
+          label="Edit"
+          class="w-full"
+          @click="emit('edit')"
+          outlined
+          severity="info"
+        />
       </div>
     </template>
   </Card>

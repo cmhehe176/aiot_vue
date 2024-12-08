@@ -84,7 +84,7 @@
   watch(
     () => messageDevice,
     (newValue) => {
-      chartData.value.labels = newValue.map((i) => i.name)
+      chartData.value.labels = newValue.map((i) => i.name || 'inValidName')
 
       chartData.value.datasets.map((d) => {
         if (d.label === 'object') return (d.data = newValue.map((value) => value.object))

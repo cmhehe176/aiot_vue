@@ -11,5 +11,5 @@ export const formatDate = (
 ) => {
   if (!dayjs(date).isValid) return date
 
-  return dayjs(date).utc(true).tz(timeZone).format(format)
+  return dayjs(date).tz(timeZone).format(format)
 }

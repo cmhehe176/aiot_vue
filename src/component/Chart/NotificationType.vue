@@ -18,7 +18,7 @@
     const documentStyle = getComputedStyle(document.documentElement)
 
     return {
-      labels: notificationType.map((noti) => noti.name),
+      labels: notificationType.map((noti) => noti.name || 'inValidName'),
       datasets: [
         {
           type: 'bar',

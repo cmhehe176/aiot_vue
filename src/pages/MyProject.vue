@@ -7,7 +7,7 @@
 
 <template>
   <div class="flex flex-col gap-2 flex-wrap">
-    <Button v-if="isAdmin" class="w-28" label="Add Project" />
+    <Button v-if="isAdmin" class="w-28" label="Add Project" text outlined severity="info" />
     <ListProject />
   </div>
 </template>

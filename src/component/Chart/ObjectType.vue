@@ -17,9 +17,9 @@
 
   const setChartData = (objectType: TObjectType[]) => {
     const documentStyle = getComputedStyle(document.documentElement)
-    const labels = objectType.map((object) => object.name)
+
     return {
-      labels,
+      labels: objectType.map((object) => object.name || 'inValidName'),
       datasets: [
         {
           type: 'bar',
