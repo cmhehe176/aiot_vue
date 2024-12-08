@@ -6,6 +6,8 @@
   import { dashboardService } from '@/service/dashboard'
   import { storeToRefs } from 'pinia'
   import StatusDevice from '@/component/Chart/StatusDevice.vue'
+  import ObjectType from '@/component/Chart/ObjectType.vue'
+  import NotificationType from '@/component/Chart/NotificationType.vue'
 
   const { isAdmin } = storeToRefs(useAuthStore())
 
@@ -38,17 +40,14 @@
     />
 
     <div class="flex gap-20 flex-wrap mt-10">
-      <div class="flex flex-col gap-8">
-        <MessageChart :message-device="dataChart?.messageDevice" />
-        <MessageChart :message-device="dataChart?.messageDevice" />
-      </div>
-
+      <MessageChart :message-device="dataChart?.messageDevice" />
       <StatusDevice :status-device="dataChart?.statusDevice" />
-      <MessageChart :message-device="dataChart?.messageDevice" />
-      <MessageChart :message-device="dataChart?.messageDevice" />
-      <MessageChart :message-device="dataChart?.messageDevice" />
-      <MessageChart :message-device="dataChart?.messageDevice" />
-      <MessageChart :message-device="dataChart?.messageDevice" />
+      <ObjectType :object-type="dataChart?.typeDetect" />
+      <NotificationType :notification-type="dataChart?.notificationType" />
+      <NotificationType :notification-type="dataChart?.notificationType" />
+      <NotificationType :notification-type="dataChart?.notificationType" />
+      <NotificationType :notification-type="dataChart?.notificationType" />
+      <NotificationType :notification-type="dataChart?.notificationType" />
     </div>
   </div>
 </template>

@@ -50,9 +50,14 @@
 </script>
 
 <template>
-  <div class="min-w-[500px] h-[500px]">
+  <div class="min-w-[500px]">
     <Fieldset legend="Status Of Device" :toggleable="true">
-      <Chart type="pie" :data="chartData" :options="chartOptions" />
+      <Chart
+        type="pie"
+        :data="chartData"
+        :options="chartOptions"
+        class="h-[15rem] flex justify-center"
+      />
     </Fieldset>
   </div>
 </template>

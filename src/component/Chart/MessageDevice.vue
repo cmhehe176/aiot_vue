@@ -84,7 +84,7 @@
   watch(
     () => messageDevice,
     (newValue) => {
-      chartData.value.labels = newValue.map((i) => i.name || 'inValidName')
+      chartData.value.labels = newValue.map((i) => i.name)
 
       chartData.value.datasets.map((d) => {
         if (d.label === 'object') return (d.data = newValue.map((value) => value.object))
@@ -101,7 +101,7 @@
 <template>
   <div class="message-device min-w-[500px]">
     <Fieldset legend="Message Of Device" :toggleable="true">
-      <Chart type="bar" :data="chartData" :options="chartOptions" />
+      <Chart type="bar" :data="chartData" :options="chartOptions" class="h-[15rem]" />
     </Fieldset>
   </div>
 </template>
@@ -109,7 +109,7 @@
 <style lang="scss">
   .message-device {
     .p-fieldset {
-      max-height: 295px;
+      // max-height: 295px;
     }
   }
 </style>
