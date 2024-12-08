@@ -48,7 +48,7 @@
           class="flex items-center px-4 py-2 cursor-pointer group"
         >
           <BaseIcon v-if="item.icon" :name="item.icon" size="18" />
-          <span :class="['ml-2', { 'font-semibold': item.items }]">{{ item.name }}</span>
+          <span :class="['ml-2', { 'font-semibold': item.items }]">{{ item.label }}</span>
         </RouterLink>
       </template>
     </PanelMenu>

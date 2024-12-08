@@ -1,31 +1,31 @@
 <script lang="ts" setup>
   import { useAuthStore } from '@/stores/auth'
   import { storeToRefs } from 'pinia'
-  import { onMounted } from 'vue'
+  import { computed, onMounted, ref } from 'vue'
   import { optionsTypes } from '@/constant/optionsType'
 
   const authStore = useAuthStore()
 
   const { getListDeviceByProject } = useAuthStore()
-  const { listProject, listDeviceByProject } = storeToRefs(authStore)
+  const { listProject, listDeviceByProject, isAdmin } = storeToRefs(authStore)
+
+  const projectOptions = computed(() =>
+    isAdmin.value ? [{ id: -1, name: 'All' }, ...listProject.value] : listProject.value,
+  )
+
+  const deviceOptions = computed(() => [{ id: -1, name: 'All' }, ...listDeviceByProject.value])
 
   const modelProject = defineModel<number>('project')
   const modelDevice = defineModel<number>('device')
   const modelDatePicker = defineModel<any>('datePicker')
   const modelTypeObject = defineModel<string>('typeObject')
 
-  const handleChangeProject = () => {
-    getListDeviceByProject(modelProject.value as number)
-
-    const [defaultDevice] = listDeviceByProject.value
-    modelDevice.value = defaultDevice.id
+  const handleChangeProject = (projectId) => {
+    getListDeviceByProject(projectId)
   }
 
   onMounted(() => {
-    const [defaultProject] = listProject.value
-    modelProject.value = defaultProject.id
-
-    handleChangeProject()
+    modelProject.value = projectOptions.value[0].id
   })
 </script>
 
@@ -35,11 +35,11 @@
       <Select
         v-model="modelProject"
         inputId="project"
-        :options="listProject"
+        :options="projectOptions"
         optionLabel="name"
         optionValue="id"
         class="w-full"
-        @change="handleChangeProject"
+        @change="({ value }) => handleChangeProject(value)"
       />
       <label for="project">Project</label>
     </FloatLabel>
@@ -48,7 +48,7 @@
       <Select
         v-model="modelDevice"
         inputId="device"
-        :options="listDeviceByProject"
+        :options="deviceOptions"
         optionLabel="name"
         optionValue="id"
         class="w-full"

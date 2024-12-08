@@ -17,7 +17,6 @@ export const sidebars: ISidebar[] = [
         name: 'chart',
         key: 'chart',
         icon: 'chart',
-        admin: true,
       },
       {
         label: 'Project Management',
