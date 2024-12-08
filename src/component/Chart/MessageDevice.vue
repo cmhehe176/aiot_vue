@@ -99,16 +99,17 @@
 </script>
 
 <template>
-  <div class="min-w-[500px]">
+  <div class="message-device min-w-[500px]">
     <Fieldset legend="Message Of Device" :toggleable="true">
       <Chart type="bar" :data="chartData" :options="chartOptions" />
     </Fieldset>
   </div>
 </template>
-<!-- 
+
 <style lang="scss">
-  .p-fieldset {
-    min-width: 500px;
-    min-height: 300px;
+  .message-device {
+    .p-fieldset {
+      max-height: 295px;
+    }
   }
-</style> -->
+</style>
